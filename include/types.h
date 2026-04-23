@@ -1,10 +1,10 @@
 /* ============================================================================
- * VibeOS - Core Type Definitions
+ *  EarlnuxOS - Core Type Definitions
  * include/kernel/types.h
  * ============================================================================ */
 
-#ifndef VIBEOS_TYPES_H
-#define VIBEOS_TYPES_H
+#ifndef  EarlnuxOS_TYPES_H
+#define  EarlnuxOS_TYPES_H
 
 /* Primitive fixed-width types */
 typedef unsigned char       uint8_t;
@@ -85,4 +85,4 @@ typedef int                 bool;
 #define KERNEL_HEAP_START  0xD0000000u
 #define KERNEL_HEAP_SIZE   (256 * 1024 * 1024u)  /* 256 MB */
 
-#endif /* VIBEOS_TYPES_H */
+#endif /*  EarlnuxOS_TYPES_H */

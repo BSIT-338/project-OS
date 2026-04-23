@@ -1,5 +1,5 @@
 /* ============================================================================
- * VibeOS - Global Descriptor Table (GDT) Implementation
+ *  EarlnuxOS - Global Descriptor Table (GDT) Implementation
  * kernel/arch/x86/gdt.c
  * ============================================================================ */
 

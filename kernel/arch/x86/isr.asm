@@ -1,5 +1,5 @@
 ; ============================================================================
-; VibeOS - Interrupt Service Routine (ISR) Stubs
+;  EarlnuxOS - Interrupt Service Routine (ISR) Stubs
 ; kernel/arch/x86/isr.asm
 ; ============================================================================
 ; This file provides assembly stubs for all CPU exceptions and hardware IRQs.

@@ -1,5 +1,5 @@
 /* ============================================================================
- * VibeOS - Virtual Memory Manager (VMM)
+ *  EarlnuxOS - Virtual Memory Manager (VMM)
  * mm/vmm.c
  * x86 Two-Level Paging (4KB pages, 4MB pages optional)
  * ============================================================================ */

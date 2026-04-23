@@ -1,5 +1,5 @@
 /* ============================================================================
- * VibeOS - ISR Dispatch and Exception Handlers
+ *  EarlnuxOS - ISR Dispatch and Exception Handlers
  * kernel/arch/x86/isr.c
  * ============================================================================ */
 

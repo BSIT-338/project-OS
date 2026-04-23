@@ -1,5 +1,5 @@
 /* ============================================================================
- * VibeOS - Programmable Interrupt Controller (PIC) Driver
+ *  EarlnuxOS - Programmable Interrupt Controller (PIC) Driver
  * kernel/drivers/pic.c
  * ============================================================================ */
 

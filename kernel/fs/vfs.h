@@ -1,10 +1,10 @@
 /* ============================================================================
- * VibeOS - Virtual Filesystem (VFS) Header
+ *  EarlnuxOS - Virtual Filesystem (VFS) Header
  * include/fs/fs.h
  * ============================================================================ */
 
-#ifndef VIBEOS_FS_H
-#define VIBEOS_FS_H
+#ifndef  EarlnuxOS_FS_H
+#define  EarlnuxOS_FS_H
 
 #include <kernel/types.h>
 
@@ -270,4 +270,4 @@ int  path_dirname(const char *path, char *out, size_t len);
 int  path_basename(const char *path, char *out, size_t len);
 bool path_is_absolute(const char *path);
 
-#endif /* VIBEOS_FS_H */
+#endif /*  EarlnuxOS_FS_H */

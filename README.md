@@ -1,4 +1,4 @@
-# VibeOS
+#  EarlnuxOS
 
 A modern hobby OS for x86 – built from scratch with a clean architecture.
 
@@ -17,7 +17,7 @@ A modern hobby OS for x86 – built from scratch with a clean architecture.
 
 ## Project Description
 
-VibeOS is a 32-bit x86 operating system written in C and NASM assembly. It implements core OS abstractions: bootloading, memory management, virtual filesystem, interrupt handling, device drivers, and a full TCP/IP stack. Designed for education and experimentation, VibeOS demonstrates how to build a modern microkernel-inspired monolithic OS from the ground up.
+ EarlnuxOS is a 32-bit x86 operating system written in C and NASM assembly. It implements core OS abstractions: bootloading, memory management, virtual filesystem, interrupt handling, device drivers, and a full TCP/IP stack. Designed for education and experimentation,  EarlnuxOS demonstrates how to build a modern microkernel-inspired monolithic OS from the ground up.
 
 ### Key Design Goals
 
@@ -44,7 +44,7 @@ VibeOS is a 32-bit x86 operating system written in C and NASM assembly. It imple
 
 ## Architecture
 
-VibeOS follows a **monolithic kernel** design with layered subsystems:
+ EarlnuxOS follows a **monolithic kernel** design with layered subsystems:
 
 ```
 ┌─────────────────────────────────────────┐
@@ -152,10 +152,12 @@ project-OS/
 
 ## Prerequisites
 
+> **Important**:  EarlnuxOS requires a cross-compiler toolchain that is not available in standard package repositories. See [`TOOLCHAIN_SETUP.md`](TOOLCHAIN_SETUP.md) for detailed installation instructions.
+
 | Tool | Purpose | Installation |
 |------|---------|-------------|
 | `nasm` | Netwide Assembler (bootloader, assembly stubs) | `apt install nasm` / `brew install nasm` |
-| `i686-elf-gcc` | Cross-compiler for 32-bit ELF | Build from source (see below) |
+| `i686-elf-gcc` | Cross-compiler for 32-bit ELF | **See `TOOLCHAIN_SETUP.md`** |
 | `i686-elf-ld` | Cross-linker | Comes with binutils |
 | `qemu-system-i386` | i386 emulator | `apt install qemu-system-i386` / `brew install qemu` |
 | `make` | Build automation | Usually pre-installed |
@@ -221,7 +223,7 @@ make run
 QEMU launches with the floppy image. Expected output:
 
 ```
-VibeOS v1.0 "Prism"  -  Copyright (c) 2025 VibeOS Project
+ EarlnuxOS v1.0 "Prism"  -  Copyright (c) 2025  EarlnuxOS Project
 Built: Apr 23 2026 08:00:00 | Arch: i686
 
 === Kernel Initialization ===
@@ -240,14 +242,14 @@ Built: Apr 23 2026 08:00:00 | Arch: i686
 
 Network: Starting DHCP... OK  IP: 10.0.2.15
 
-*** VibeOS kernel initialized successfully ***
+***  EarlnuxOS kernel initialized successfully ***
 ```
 
 You then get an interactive shell:
 
 ```
-root@vibeos:~# help
-VibeOS Built-in Shell Commands:
+root@ EarlnuxOS:~# help
+ EarlnuxOS Built-in Shell Commands:
   help              Show this help
   echo [text]       Print text to console
   clear             Clear screen
@@ -266,7 +268,7 @@ VibeOS Built-in Shell Commands:
   reboot            Reboot system
   halt              Halt system
 
-root@vibeos:~#
+root@ EarlnuxOS:~#
 ```
 
 ## Project Status
@@ -293,7 +295,7 @@ root@vibeos:~#
 
 ## Contributing
 
-VibeOS is an educational project. Contributions are welcome:
+ EarlnuxOS is an educational project. Contributions are welcome:
 
 - Implement missing filesystems (VibeFS, ext2)
 - Complete network drivers (e.g., Intel e1000, Realtek RTL8139)

@@ -1,5 +1,5 @@
 ; ============================================================================
-; VibeOS - Kernel Entry (32-bit Protected Mode)
+;  EarlnuxOS - Kernel Entry (32-bit Protected Mode)
 ; kernel/entry.asm
 ; Linked to run at 0x00100000 (1MB physical / higher-half aware)
 ; ============================================================================

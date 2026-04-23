@@ -1,5 +1,5 @@
 ; ============================================================================
-; VibeOS - Common Interrupt Handler (called by all ISR/IRQ stubs)
+;  EarlnuxOS - Common Interrupt Handler (called by all ISR/IRQ stubs)
 ; kernel/arch/x86/isr_common.asm
 ; ============================================================================
 ; Stack layout upon entry from stub:

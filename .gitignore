@@ -18,3 +18,14 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Toolchain directories
+binutils-*/
+gcc-*/
+nasm-*/
+
+# Downloaded archives
+*.tar.gz
+
+# Build directory
+build/

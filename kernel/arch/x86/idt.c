@@ -1,5 +1,5 @@
 /* ============================================================================
- * VibeOS - Interrupt Descriptor Table Implementation
+ *  EarlnuxOS - Interrupt Descriptor Table Implementation
  * kernel/arch/x86/idt.c
  * ============================================================================ */
 

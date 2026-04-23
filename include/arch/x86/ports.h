@@ -1,10 +1,10 @@
 /* ============================================================================
- * VibeOS - x86 Low-Level Port I/O
+ *  EarlnuxOS - x86 Low-Level Port I/O
  * include/arch/x86/ports.h
  * ============================================================================ */
 
-#ifndef VIBEOS_ARCH_PORTS_H
-#define VIBEOS_ARCH_PORTS_H
+#ifndef  EarlnuxOS_ARCH_PORTS_H
+#define  EarlnuxOS_ARCH_PORTS_H
 
 /* PIC (8259A) interrupt controller ports */
 #define PIC1_CMD        0x20
@@ -66,4 +66,4 @@
 #define PS2_CTRL_PORT   0x92
 #define PS2_CTRL_A20    BIT(1)
 
-#endif /* VIBEOS_ARCH_PORTS_H */
+#endif /*  EarlnuxOS_ARCH_PORTS_H */
