@@ -1,5 +1,5 @@
 /* ============================================================================
- * VibeOS - Programmable Interval Timer (PIT) Driver
+ *  EarlnuxOS - Programmable Interval Timer (PIT) Driver
  * kernel/drivers/pit.c
  * ============================================================================ */
 

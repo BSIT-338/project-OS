@@ -1,5 +1,5 @@
 /* ============================================================================
- * VibeOS - Kernel Main
+ *  EarlnuxOS - Kernel Main
  * kernel/kernel.c
  * ============================================================================ */
 
@@ -55,7 +55,7 @@ static uint32_t detect_memory_mb(void) {
 }
 
 /* ============================================================================
- * VibeOS Boot Banner
+ *  EarlnuxOS Boot Banner
  * ============================================================================ */
 static void print_banner(void) {
     console_set_color(VGA_ATTR(COLOR_LIGHT_CYAN, COLOR_BLACK));
@@ -69,8 +69,8 @@ static void print_banner(void) {
     console_set_color(VGA_DEFAULT_ATTR);
     kprintf("\n");
     console_set_color(VGA_ATTR(COLOR_YELLOW, COLOR_BLACK));
-    kprintf("  VibeOS v%s \"%s\"  -  Copyright (c) 2025 VibeOS Project\n",
-            VIBEOS_VERSION_STR, VIBEOS_CODENAME);
+    kprintf("   EarlnuxOS v%s \"%s\"  -  Copyright (c) 2025  EarlnuxOS Project\n",
+             EarlnuxOS_VERSION_STR,  EarlnuxOS_CODENAME);
     console_set_color(VGA_DEFAULT_ATTR);
     kprintf("  Built: %s %s | Arch: i686\n", __DATE__, __TIME__);
     kprintf("\n");
@@ -180,7 +180,7 @@ static void mount_initial_fs(void) {
     /* Write /etc/hostname */
     int fd = vfs_open("/etc/hostname", O_WRONLY | O_CREAT, 0644);
     if (fd >= 0) {
-        vfs_write(fd, "vibeos-host\n", 12);
+        vfs_write(fd, " EarlnuxOS-host\n", 12);
         vfs_close(fd);
     }
 
@@ -188,7 +188,7 @@ static void mount_initial_fs(void) {
     fd = vfs_open("/etc/version", O_WRONLY | O_CREAT, 0644);
     if (fd >= 0) {
         char buf[64];
-        ksprintf(buf, "VibeOS %s (%s)\n", VIBEOS_VERSION_STR, VIBEOS_CODENAME);
+        ksprintf(buf, " EarlnuxOS %s (%s)\n",  EarlnuxOS_VERSION_STR,  EarlnuxOS_CODENAME);
         vfs_write(fd, buf, __builtin_strlen(buf));
         vfs_close(fd);
     }
@@ -305,7 +305,7 @@ static int tokenize(char *str, char *argv[], int max_args) {
 static void cmd_help(int argc, char *argv[]) {
     (void)argc; (void)argv;
     console_set_color(VGA_ATTR(COLOR_LIGHT_CYAN, COLOR_BLACK));
-    kprintf("\nVibeOS Built-in Shell Commands:\n");
+    kprintf("\n EarlnuxOS Built-in Shell Commands:\n");
     console_set_color(VGA_DEFAULT_ATTR);
     kprintf("  help              Show this help\n");
     kprintf("  echo [text]       Print text to console\n");
@@ -489,8 +489,8 @@ static void cmd_uptime(int argc, char *argv[]) {
 
 static void cmd_uname(int argc, char *argv[]) {
     (void)argc; (void)argv;
-    kprintf("%s %s #1 %s %s i686 VibeOS\n",
-            VIBEOS_NAME, VIBEOS_VERSION_STR, __DATE__, __TIME__);
+    kprintf("%s %s #1 %s %s i686  EarlnuxOS\n",
+             EarlnuxOS_NAME,  EarlnuxOS_VERSION_STR, __DATE__, __TIME__);
 }
 
 extern void ps_dump(void);
@@ -542,13 +542,13 @@ static const cmd_t commands[] = {
 static void shell_run(void) {
     char *argv[16];
     console_set_color(VGA_ATTR(COLOR_LIGHT_GREEN, COLOR_BLACK));
-    kprintf("\nVibeOS shell ready. Type 'help' for commands.\n\n");
+    kprintf("\n EarlnuxOS shell ready. Type 'help' for commands.\n\n");
     console_set_color(VGA_DEFAULT_ATTR);
 
     while (1) {
         /* Prompt */
         console_set_color(VGA_ATTR(COLOR_LIGHT_GREEN, COLOR_BLACK));
-        kprintf("root@vibeos");
+        kprintf("root@ EarlnuxOS");
         console_set_color(VGA_DEFAULT_ATTR);
         kprintf(":");
         console_set_color(VGA_ATTR(COLOR_LIGHT_BLUE, COLOR_BLACK));
@@ -647,7 +647,7 @@ void kernel_main(uint32_t mb_magic, multiboot_info_t *info) {
     pmm_dump_info();
 
     console_set_color(VGA_ATTR(COLOR_LIGHT_GREEN, COLOR_BLACK));
-    kprintf("\n  *** VibeOS kernel initialized successfully ***\n");
+    kprintf("\n  ***  EarlnuxOS kernel initialized successfully ***\n");
     console_set_color(VGA_DEFAULT_ATTR);
 
     kernel_initialized = true;

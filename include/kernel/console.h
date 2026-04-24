@@ -1,10 +1,10 @@
 /* ============================================================================
- * VibeOS - VGA Text-Mode Console API
+ *  EarlnuxOS - VGA Text-Mode Console API
  * include/kernel/console.h
  * ============================================================================ */
 
-#ifndef VIBEOS_CONSOLE_H
-#define VIBEOS_CONSOLE_H
+#ifndef  EarlnuxOS_CONSOLE_H
+#define  EarlnuxOS_CONSOLE_H
 
 #include <types.h>
 
@@ -55,4 +55,4 @@ void console_get_cursor(uint8_t *row, uint8_t *col);
 /* Write a formatted string to console (like printf) */
 int  console_printf(const char *fmt, ...);
 
-#endif /* VIBEOS_CONSOLE_H */
+#endif /*  EarlnuxOS_CONSOLE_H */

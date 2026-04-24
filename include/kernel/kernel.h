@@ -1,22 +1,22 @@
 /* ============================================================================
- * VibeOS - Kernel Core Header
+ *  EarlnuxOS - Kernel Core Header
  * kernel/kernel.h
  * ============================================================================ */
 
-#ifndef VIBEOS_KERNEL_H
-#define VIBEOS_KERNEL_H
+#ifndef  EarlnuxOS_KERNEL_H
+#define  EarlnuxOS_KERNEL_H
 
 #include <types.h>
 
 /* ============================================================================
  * Version information
  * ============================================================================ */
-#define VIBEOS_NAME          "VibeOS"
-#define VIBEOS_VERSION_MAJOR 1
-#define VIBEOS_VERSION_MINOR 0
-#define VIBEOS_VERSION_PATCH 0
-#define VIBEOS_VERSION_STR   "1.0.0"
-#define VIBEOS_CODENAME      "Prism"
+#define  EarlnuxOS_NAME          " EarlnuxOS"
+#define  EarlnuxOS_VERSION_MAJOR 1
+#define  EarlnuxOS_VERSION_MINOR 0
+#define  EarlnuxOS_VERSION_PATCH 0
+#define  EarlnuxOS_VERSION_STR   "1.0.0"
+#define  EarlnuxOS_CODENAME      "Prism"
 
 /* ============================================================================
  * VGA Text-Mode Console
@@ -161,4 +161,4 @@ static inline uint32_t read_cr3(void) {
 void kernel_main(void) NORETURN;
 void kernel_early_init(void);
 
-#endif /* VIBEOS_KERNEL_H */
+#endif /*  EarlnuxOS_KERNEL_H */

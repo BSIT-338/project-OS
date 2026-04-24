@@ -1,10 +1,10 @@
 /* ============================================================================
- * VibeOS - Global Descriptor Table (GDT)
+ *  EarlnuxOS - Global Descriptor Table (GDT)
  * kernel/arch/x86/gdt.h
  * ============================================================================ */
 
-#ifndef VIBEOS_ARCH_X86_GDT_H
-#define VIBEOS_ARCH_X86_GDT_H
+#ifndef  EarlnuxOS_ARCH_X86_GDT_H
+#define  EarlnuxOS_ARCH_X86_GDT_H
 
 #include <types.h>
 
@@ -83,4 +83,4 @@ static inline void reload_segments(void) {
                      : : "i"(KERNEL_DS << 3) : "memory");
 }
 
-#endif /* VIBEOS_ARCH_X86_GDT_H */
+#endif /*  EarlnuxOS_ARCH_X86_GDT_H */

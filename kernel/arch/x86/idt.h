@@ -1,10 +1,10 @@
 /* ============================================================================
- * VibeOS - Interrupt Descriptor Table (IDT)
+ *  EarlnuxOS - Interrupt Descriptor Table (IDT)
  * kernel/arch/x86/idt.h
  * ============================================================================ */
 
-#ifndef VIBEOS_ARCH_X86_IDT_H
-#define VIBEOS_ARCH_X86_IDT_H
+#ifndef  EarlnuxOS_ARCH_X86_IDT_H
+#define  EarlnuxOS_ARCH_X86_IDT_H
 
 #include <types.h>
 
@@ -128,4 +128,4 @@ extern void irq_stub_spurious(void);
 /* Register an ISR handler */
 void idt_set_gate(uint8_t num, uint32_t base, uint16_t sel, uint8_t flags);
 
-#endif /* VIBEOS_ARCH_X86_IDT_H */
+#endif /*  EarlnuxOS_ARCH_X86_IDT_H */

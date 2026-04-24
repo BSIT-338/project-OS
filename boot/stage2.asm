@@ -1,5 +1,5 @@
 ; ============================================================================
-; VibeOS - Stage 2 Bootloader
+;  EarlnuxOS - Stage 2 Bootloader
 ; Loaded at 0x8000. Enables A20, sets up GDT, enters 32-bit protected mode,
 ; loads the kernel ELF from disk, and transfers control.
 ; ============================================================================
@@ -114,7 +114,7 @@ GDT_PTR:
     dw GDT_END - GDT_START - 1
     dd GDT_START
 
-MSG_S2:  db "Stage 2: VibeOS Bootloader OK", 0x0D, 0x0A, 0
+MSG_S2:  db "Stage 2:  EarlnuxOS Bootloader OK", 0x0D, 0x0A, 0
 MSG_A20: db "A20 line enabled", 0x0D, 0x0A, 0
 
 ; ============================================================================

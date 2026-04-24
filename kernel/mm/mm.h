@@ -1,10 +1,10 @@
 /* ============================================================================
- * VibeOS - Memory Management Subsystem Header
+ *  EarlnuxOS - Memory Management Subsystem Header
  * include/mm/mm.h
  * ============================================================================ */
 
-#ifndef VIBEOS_MM_H
-#define VIBEOS_MM_H
+#ifndef  EarlnuxOS_MM_H
+#define  EarlnuxOS_MM_H
 
 #include <types.h>
 
@@ -233,4 +233,4 @@ static inline void mmio_write32(uint32_t addr, uint32_t val) {
     *(volatile uint32_t *)addr = val;
 }
 
-#endif /* VIBEOS_MM_H */
+#endif /*  EarlnuxOS_MM_H */

@@ -1,10 +1,10 @@
 /* ============================================================================
- * VibeOS - x86 CPU Feature Detection
+ *  EarlnuxOS - x86 CPU Feature Detection
  * include/arch/x86/cpu.h
  * ============================================================================ */
 
-#ifndef VIBEOS_ARCH_X86_CPU_H
-#define VIBEOS_ARCH_X86_CPU_H
+#ifndef  EarlnuxOS_ARCH_X86_CPU_H
+#define  EarlnuxOS_ARCH_X86_CPU_H
 
 #include <types.h>
 
@@ -168,4 +168,4 @@ static inline void cpu_cli(void) {
     __asm__ volatile("cli" : : : "memory");
 }
 
-#endif /* VIBEOS_ARCH_X86_CPU_H */
+#endif /*  EarlnuxOS_ARCH_X86_CPU_H */

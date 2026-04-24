@@ -1,10 +1,10 @@
 /* ============================================================================
- * VibeOS - Network Stack Header
+ *  EarlnuxOS - Network Stack Header
  * include/net/net.h
  * ============================================================================ */
 
-#ifndef VIBEOS_NET_H
-#define VIBEOS_NET_H
+#ifndef  EarlnuxOS_NET_H
+#define  EarlnuxOS_NET_H
 
 #include <kernel/types.h>
 
@@ -385,4 +385,4 @@ static inline uint32_t ntohl(uint32_t v) { return htonl(v); }
 /* IP address to string (uses static buffer - single use per call) */
 const char *ip4_to_str(ip4_addr_t ip);
 
-#endif /* VIBEOS_NET_H */
+#endif /*  EarlnuxOS_NET_H */

@@ -1,5 +1,5 @@
 /* ============================================================================
- * VibeOS - Physical Memory Manager (PMM)
+ *  EarlnuxOS - Physical Memory Manager (PMM)
  * mm/pmm.c
  * Buddy system allocator over BIOS/multiboot memory map
  * ============================================================================ */

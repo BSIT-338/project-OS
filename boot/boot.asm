@@ -1,7 +1,7 @@
 ; ============================================================================
-; VibeOS - Stage 1 Bootloader (MBR)
+;  EarlnuxOS - Stage 1 Bootloader (MBR)
 ; Loads stage 2 from disk, sets up GDT, enters protected mode
-; Author: VibeOS Team
+; Author:  EarlnuxOS Team
 ; Target: x86, BIOS, 512 bytes
 ; ============================================================================
 
@@ -77,7 +77,7 @@ DAP:
     dq 0x0001       ; Starting LBA (sector 1, zero-indexed)
 
 BOOT_DRIVE:  db 0
-MSG_BOOT:    db "VibeOS v1.0 Booting...", 0x0D, 0x0A, 0
+MSG_BOOT:    db " EarlnuxOS v1.0 Booting...", 0x0D, 0x0A, 0
 MSG_LOADED:  db "Stage 2 loaded. Entering kernel...", 0x0D, 0x0A, 0
 MSG_ERR:     db "FATAL: Disk read error!", 0x0D, 0x0A, 0
 
