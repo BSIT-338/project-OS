@@ -92,26 +92,71 @@
 
     <div class="status" id="status">Status: Waiting for initialization...</div>
 
-    <!-- v86 Emulator Library -->
-    <script src="https://copy.sh/v86/build/libv86.js"></script>
     <script>
-        window.onload = function() {
+        function v86_loaded() {
             var status = document.getElementById("status");
-            status.innerText = "Status: Initializing Emulator...";
+            if (status) status.innerText = "Status: Engine Loaded. Searching for Hardware Starter...";
+            
+            setTimeout(function() {
+                // Safer universal search for the V86 constructor
+                var starter = null;
+                if (typeof window.V86Starter === "function") starter = window.V86Starter;
+                else if (typeof window.V86 === "function") starter = window.V86;
+                else if (window.v86 && typeof window.v86.V86Starter === "function") starter = window.v86.V86Starter;
+                else if (window.V86 && typeof window.V86.V86Starter === "function") starter = window.V86.V86Starter;
+                else if (typeof V86Starter === "function") starter = V86Starter;
+                
+                if (starter) {
+                    status.innerText = "Status: Hardware Starter Found. Initializing...";
+                    initEmulator(starter);
+                } else {
+                    status.innerText = "Critical Error: Emulator engine loaded but could not be initialized.";
+                    console.error("V86Starter not found. Global keys:", Object.keys(window).filter(k => k.toLowerCase().includes('v86')));
+                }
+            }, 200);
+        }
 
-            var emulator = new V86Starter({
-                wasm_path: "https://copy.sh/v86/build/v86.wasm",
-                memory_size: 256 * 1024 * 1024,
+        function v86_error() {
+            var status = document.getElementById("status");
+            if (status) status.innerHTML = "Critical Error: Could not load the emulator engine.";
+        }
+
+        function initEmulator(Starter) {
+            var status = document.getElementById("status");
+            
+            var settings = {
+                wasm_path: "https://cdn.jsdelivr.net/npm/v86/build/v86.wasm",
+                memory_size: 128 * 1024 * 1024,
                 vga_memory_size: 8 * 1024 * 1024,
                 screen_container: document.getElementById("screen_container"),
-                bios: { url: "https://copy.sh/v86/bios/seabios.bin" },
-                vga_bios: { url: "https://copy.sh/v86/bios/vgabios.bin" },
-                cdrom: { url: "build/os.iso" }, /* Link to your ISO */
+                bios: { url: "https://cdn.jsdelivr.net/npm/v86/bios/seabios.bin" },
+                vga_bios: { url: "https://cdn.jsdelivr.net/npm/v86/bios/vgabios.bin" },
+                cdrom: { url: "build/os.iso" },
                 autostart: true,
-            });
+            };
 
-            status.innerText = "Status: System Booting...";
-        };
+            try {
+                var emulator = new Starter(settings);
+                
+                emulator.add_listener("emulator-ready", function() {
+                    status.innerText = "Status: Hardware Ready. Booting EarlnuxOS...";
+                });
+
+                emulator.add_listener("download-progress", function(e) {
+                    status.innerText = "Status: Downloading " + e.file_name + " (" + Math.round(e.loaded/e.total*100) + "%)";
+                });
+
+                emulator.add_listener("download-error", function(e) {
+                    status.innerText = "Error: Failed to load " + e.file_name + ". Verify the file exists in build/ folder!";
+                });
+
+            } catch (e) {
+                status.innerText = "Critical Error: " + e.message;
+            }
+        }
     </script>
+
+    <!-- v86 Emulator Library - Using verified NPM mirror -->
+    <script id="v86_script" src="https://cdn.jsdelivr.net/npm/v86/build/libv86.js" onload="v86_loaded()" onerror="v86_error()"></script>
 </body>
 </html>
