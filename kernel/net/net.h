@@ -6,7 +6,7 @@
 #ifndef  EarlnuxOS_NET_H
 #define  EarlnuxOS_NET_H
 
-#include <kernel/types.h>
+#include <types.h>
 
 /* ============================================================================
  * Ethernet / MAC Layer
