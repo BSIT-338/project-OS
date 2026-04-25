@@ -93,21 +93,19 @@
     <div class="status" id="status">Status: Waiting for initialization...</div>
 
     <!-- v86 Emulator Library - Using JSDelivr -->
-    <script id="v86_script" src="https://cdn.jsdelivr.net/npm/v86/build/libv86.js"></script>
+    <script id="v86_script" src="https://cdn.jsdelivr.net/npm/v86/build/libv86.js" onload="v86_loaded()" onerror="v86_error()"></script>
     
     <script>
-        var v86_script = document.getElementById("v86_script");
-        
-        v86_script.onload = function() {
+        function v86_loaded() {
             var status = document.getElementById("status");
-            status.innerText = "Status: Engine Loaded. Initializing Hardware...";
+            if (status) status.innerText = "Status: Engine Loaded. Initializing Hardware...";
             initEmulator();
-        };
+        }
 
-        v86_script.onerror = function() {
+        function v86_error() {
             var status = document.getElementById("status");
-            status.innerHTML = "Critical Error: Could not load the emulator engine. Try refreshing the page.";
-        };
+            if (status) status.innerHTML = "Critical Error: Could not load the emulator engine. Try refreshing the page.";
+        }
 
         function initEmulator() {
             var status = document.getElementById("status");
