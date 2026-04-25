@@ -46,13 +46,30 @@ sudo apt install -y nasm gcc-i686-linux-gnu binutils-i686-linux-gnu qemu-system-
 
 ## Building and Running
 The build system uses a standard `Makefile` to generate a bootable ISO.
+### Optional Build Targets:
+- `make clean`: Remove all build artifacts.
+- `make run`: Build and launch immediately in QEMU.
+
+## Deployment & Universal Access
+
+### 🌐 Web Browser Demo (v86)
+EarlnuxOS can be run directly in your browser without installation.
+1. Enable **GitHub Pages** for your repository.
+2. Ensure `os.iso` is in the `build/` folder.
+3. Access the demo via `https://your-username.github.io/project-OS/index.html`.
+
+### 🐳 Docker Build (Zero Installation)
+Build the OS without installing any local toolchains:
 ```bash
-# Build the ISO image
-make iso
+# Build the environment
+docker build -t earlnux .
+
+# Build the ISO inside Docker
+docker run --rm -v $(pwd):/os earlnux
+```
 
 # Run in QEMU
 qemu-system-i386 -cdrom build/os.iso -boot d -m 256M
-```
 
 ## Project Status
 | Component      | Status | Description |
