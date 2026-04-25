@@ -92,9 +92,6 @@
 
     <div class="status" id="status">Status: Waiting for initialization...</div>
 
-    <!-- v86 Emulator Library - Using JSDelivr -->
-    <script id="v86_script" src="https://cdn.jsdelivr.net/npm/v86/build/libv86.js" onload="v86_loaded()" onerror="v86_error()"></script>
-    
     <script>
         function v86_loaded() {
             var status = document.getElementById("status");
@@ -141,5 +138,8 @@
             }
         }
     </script>
+
+    <!-- v86 Emulator Library - Using JSDelivr -->
+    <script id="v86_script" src="https://cdn.jsdelivr.net/npm/v86/build/libv86.js" onload="v86_loaded()" onerror="v86_error()"></script>
 </body>
 </html>
