@@ -5,9 +5,6 @@ MULTIBOOT_MAGIC    equ 0x1BADB002
 MULTIBOOT_FLAGS    equ 0x00000000
 MULTIBOOT_CHECKSUM equ -(MULTIBOOT_MAGIC + MULTIBOOT_FLAGS)
 
-; Mark stack as non-executable (silences linker warning)
-section .note.GNU-stack noalloc noexec nowrite progbits
-
 section .multiboot
 align 4
 dd MULTIBOOT_MAGIC
@@ -22,7 +19,7 @@ _start:
     ; Set up stack
     mov esp, stack_top
 
-    ; Clear BSS section (ensure all global variables are zeroed)
+    ; Clear BSS section
     extern __bss_start
     extern __bss_end
     mov edi, __bss_start
@@ -31,9 +28,7 @@ _start:
     xor eax, eax
     rep stosb
 
-    ; Push multiboot arguments (cdecl: right-to-left)
-    ; EBX contains pointer to multiboot_info_t
-    ; EAX contains MULTIBOOT_MAGIC
+    ; Push multiboot arguments
     push ebx
     push eax
 
@@ -42,10 +37,14 @@ _start:
     call kernel_main
 
     ; Hang if kernel returns
+hang:
     cli
     hlt
+    jmp hang
 
 section .bss
 stack_bottom:
     resb 16384 ; 16KB stack
 stack_top:
+
+section .note.GNU-stack noalloc noexec nowrite progbits

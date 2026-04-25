@@ -328,6 +328,10 @@ void kernel_main(uint32_t mb_magic, multiboot_info_t *info) {
     init_step("Keyboard Driver", do_keyboard_init);
     init_step("Virtual Filesystem", do_vfs_init);
     
+    /* Hardware Discovery */
+    extern void pci_init(void);
+    init_step("PCI Bus Discovery", pci_init);
+
     mount_initial_fs();
     init_step("Networking", do_net_init);
     start_networking();

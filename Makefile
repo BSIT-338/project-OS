@@ -39,7 +39,17 @@ C_SOURCES = \
     kernel/fs/procfs.c \
     kernel/fs/vibefs.c \
     kernel/net/net.c \
-    kernel/net/stubs.c \
+    kernel/drivers/pci.c \
+    kernel/drivers/rtl8139.c \
+    kernel/net/netif.c \
+    kernel/net/eth.c \
+    kernel/net/arp.c \
+    kernel/net/ip.c \
+    kernel/net/icmp.c \
+    kernel/net/udp.c \
+    kernel/net/tcp.c \
+    kernel/net/dhcp.c \
+    kernel/net/dns.c \
     kernel/klog.c \
     kernel/ps.c
 
