@@ -94,6 +94,32 @@
             color: #555;
             text-align: center;
         }
+        .info-section {
+            margin-top: 40px;
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 204, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .info-card h3 {
+            color: var(--accent-color);
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .info-card p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            opacity: 0.8;
+        }
         /* Mobile Keyboard Helper */
         #mobile_input {
             position: absolute;
@@ -105,6 +131,13 @@
             body {
                 padding: 10px 0;
                 justify-content: flex-start;
+                overflow-y: auto;
+                height: auto;
+            }
+            .info-section {
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
             }
             .header h1 {
                 font-size: 1.1rem;
@@ -156,6 +189,27 @@
     </div>
 
     <div class="status" id="status">Status: Waiting for initialization...</div>
+
+    <div class="info-section">
+        <div class="info-card">
+            <h3>Project Overview</h3>
+            <p>EarlnuxOS is a custom-built, lightweight operating system designed for the i686 architecture. Built from the ground up in C and Assembly, it focuses on modern kernel concepts like virtual memory management, multi-user security gateways, and a flexible virtual filesystem (VFS).</p>
+        </div>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Kernel Features</h3>
+                <p>• Multi-User Security with Password Masking<br>• Advanced VFS (ramfs, procfs, vibefs)<br>• Dynamic Shell with Arithmetic Evaluation<br>• PCI Bus Discovery & Hardware Probing</p>
+            </div>
+            <div class="info-card">
+                <h3>Networking</h3>
+                <p>• Integrated TCP/IP Stack<br>• DHCP Support (Automatic IP Config)<br>• DNS Resolution Support<br>• PCI-based Interface Management</p>
+            </div>
+            <div class="info-card">
+                <h3>System Commands</h3>
+                <p>Type <b>help</b> to see the full list. Try commands like <b>meminfo</b>, <b>netinfo</b>, or file operations like <b>write</b> and <b>cat</b>.</p>
+            </div>
+        </div>
+    </div>
 
     <script>
         var emulator = null;
