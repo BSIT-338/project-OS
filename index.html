@@ -20,46 +20,68 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            padding: 20px 10px;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            width: 100%;
         }
         h1 {
             color: var(--accent-color);
             letter-spacing: 2px;
             margin: 0;
+            font-size: 1.5rem;
         }
         .subtitle {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             opacity: 0.7;
         }
         #screen_container {
             border: 2px solid #333;
             box-shadow: 0 0 50px rgba(0, 255, 204, 0.1);
             background: var(--terminal-bg);
-            padding: 10px;
+            padding: 5px;
             border-radius: 8px;
             position: relative;
+            max-width: 100%;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
         canvas {
             display: block;
+            max-width: 100% !important;
+            height: auto !important;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: pixelated;
         }
         .controls {
-            margin-top: 20px;
+            margin-top: 15px;
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 800px;
         }
         button {
             background: transparent;
             border: 1px solid var(--accent-color);
             color: var(--accent-color);
-            padding: 8px 20px;
+            padding: 12px 24px;
             cursor: pointer;
             border-radius: 4px;
             transition: all 0.3s;
+            font-size: 1rem;
+            touch-action: manipulation;
+            flex: 1;
+            min-width: 120px;
+            max-width: 200px;
         }
         button:hover {
             background: var(--accent-color);
@@ -68,8 +90,45 @@
         .status {
             margin-top: 10px;
             font-family: monospace;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: #555;
+            text-align: center;
+        }
+        /* Mobile Keyboard Helper */
+        #mobile_input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        @media (max-width: 800px) {
+            body {
+                padding: 10px 0;
+                justify-content: flex-start;
+            }
+            .header h1 {
+                font-size: 1.1rem;
+            }
+            .subtitle {
+                display: none;
+            }
+            #screen_container {
+                border-left: none;
+                border-right: none;
+                border-radius: 0;
+                padding: 0;
+                width: 100vw;
+            }
+            .controls {
+                padding: 0 10px;
+                box-sizing: border-box;
+                gap: 5px;
+            }
+            button {
+                padding: 10px;
+                font-size: 0.85rem;
+                min-width: 80px;
+            }
         }
     </style>
 </head>
@@ -80,26 +139,52 @@
         <div class="subtitle">v1.0.0 "Prism" | Online Browser Experience</div>
     </div>
 
-    <div id="screen_container">
+    <div id="screen_container" onclick="focusMobile()">
         <!-- v86 will render the VGA screen here -->
         <div style="white-space: pre; font-family: Courier, monospace; line-height: 14px"></div>
         <canvas style="display: none"></canvas>
     </div>
 
+    <!-- Hidden input to trigger mobile keyboard -->
+    <input type="text" id="mobile_input" autocomplete="off" autocapitalize="none" spellcheck="false">
+
     <div class="controls">
         <button onclick="window.location.reload()">Reset System</button>
-        <button onclick="window.open('https://github.com/BSIT-338/project-OS', '_blank')">View Source</button>
+        <button onclick="copyConsole()">Copy Console</button>
+        <button onclick="downloadISO()">Download ISO</button>
+        <button onclick="window.open('https://github.com/BSIT-338/project-OS', '_blank')">GitHub</button>
     </div>
 
     <div class="status" id="status">Status: Waiting for initialization...</div>
 
     <script>
+        var emulator = null;
+
+        function downloadISO() {
+            window.open('build/os.iso', '_blank');
+        }
+
+        function copyConsole() {
+            if (!emulator) return;
+            // v86 provides a text screen buffer
+            const text = emulator.get_text_screen().join('\n');
+            navigator.clipboard.writeText(text).then(() => {
+                const status = document.getElementById("status");
+                const oldText = status.innerText;
+                status.innerText = "Status: Terminal text copied to clipboard!";
+                setTimeout(() => status.innerText = oldText, 2000);
+            });
+        }
+
+        function focusMobile() {
+            document.getElementById("mobile_input").focus();
+        }
+
         function v86_loaded() {
             var status = document.getElementById("status");
             if (status) status.innerText = "Status: Engine Loaded. Searching for Hardware Starter...";
             
             setTimeout(function() {
-                // Safer universal search for the V86 constructor
                 var starter = null;
                 if (typeof window.V86Starter === "function") starter = window.V86Starter;
                 else if (typeof window.V86 === "function") starter = window.V86;
@@ -112,7 +197,6 @@
                     initEmulator(starter);
                 } else {
                     status.innerText = "Critical Error: Emulator engine loaded but could not be initialized.";
-                    console.error("V86Starter not found. Global keys:", Object.keys(window).filter(k => k.toLowerCase().includes('v86')));
                 }
             }, 200);
         }
@@ -137,7 +221,7 @@
             };
 
             try {
-                var emulator = new Starter(settings);
+                emulator = new Starter(settings);
                 
                 emulator.add_listener("emulator-ready", function() {
                     status.innerText = "Status: Hardware Ready. Booting EarlnuxOS...";
