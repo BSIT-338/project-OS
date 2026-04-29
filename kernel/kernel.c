@@ -249,6 +249,7 @@ static void cmd_help(int argc, char *argv[]) {
 
     kprintf("System:\n");
     kprintf("  clear              - Clear the console screen\n");
+    kprintf("  sysinfo            - Show all system information\n");
     kprintf("  meminfo            - Show memory & heap status\n");
     kprintf("  netinfo            - Show network statistics\n");
     kprintf("  uptime             - Show system uptime in ms\n");
@@ -390,6 +391,29 @@ static void cmd_uname(int argc, char *argv[]) {
     kprintf("%s %s i686\n", EarlnuxOS_NAME, EarlnuxOS_VERSION_STR);
 }
 
+static void cmd_sysinfo(int argc, char *argv[]) {
+    (void)argc; (void)argv;
+    console_set_color(VGA_ATTR(COLOR_LIGHT_CYAN, COLOR_BLACK));
+    kprintf("\n--- System Information ---\n");
+    console_set_color(VGA_DEFAULT_ATTR);
+
+    /* OS Info */
+    kprintf("OS: ");
+    cmd_uname(0, NULL);
+
+    /* Uptime */
+    kprintf("Uptime: ");
+    cmd_uptime(0, NULL);
+
+    /* Memory */
+    cmd_meminfo(0, NULL);
+
+    /* Network */
+    cmd_netinfo(0, NULL);
+
+    kprintf("\n");
+}
+
 static void cmd_reboot(int argc, char *argv[]) {
     (void)argc; (void)argv;
     outb(0x64, 0xFE);
@@ -411,8 +435,8 @@ static void cmd_logout(int argc, char *argv[]) {
 typedef struct { const char *name; void (*fn)(int, char **); } cmd_t;
 static const cmd_t commands[] = {
     {"help", cmd_help}, {"echo", cmd_echo}, {"clear", cmd_clear},
-    {"meminfo", cmd_meminfo}, {"netinfo", cmd_netinfo}, {"ls", cmd_ls},
-    {"cat", cmd_cat}, {"mkdir", cmd_mkdir}, {"rm", cmd_rm},
+    {"meminfo", cmd_meminfo}, {"netinfo", cmd_netinfo}, {"sysinfo", cmd_sysinfo},
+    {"ls", cmd_ls}, {"cat", cmd_cat}, {"mkdir", cmd_mkdir}, {"rm", cmd_rm},
     {"touch", cmd_touch}, {"write", cmd_write},
     {"cd", cmd_cd}, {"pwd", cmd_pwd}, {"logout", cmd_logout},
     {"uptime", cmd_uptime}, {"uname", cmd_uname}, {"reboot", cmd_reboot},
